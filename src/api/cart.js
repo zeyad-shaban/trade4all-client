@@ -1,9 +1,10 @@
 import axios from 'axios';
+import settings from '../config/settings';
 const endpoint = '/cart'
 
-const getCart = () => axios.get(`http://localhost:5000${endpoint}`)
-const buyProduct = id => axios.put(`http://localhost:5000${endpoint}/buy/${id}`);
-const removeProduct = id => axios.put(`http://localhost:5000${endpoint}/remove/${id}`)
+const getCart = () => axios.get(`${settings.apiUrl}${endpoint}`)
+const buyProduct = id => axios.put(`${settings.apiUrl}${endpoint}/buy/${id}`);
+const removeProduct = id => axios.put(`${settings.apiUrl}${endpoint}/remove/${id}`)
 
 
 const cartApi =  {

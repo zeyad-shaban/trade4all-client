@@ -1,9 +1,10 @@
 import axios from "axios";
+import settings from "../config/settings";
 
 const endpoint = '/auth';
-const loadUser = () => axios.get(`http://localhost:5000${endpoint}`)
-const register = (username, password) => axios.post(`http://localhost:5000/users`, { username, password });
-const login = (username, password) => axios.post(`http://localhost:5000${endpoint}`, { username, password });
+const loadUser = () => axios.get(`${settings.apiUrl}${endpoint}`)
+const register = (username, password) => axios.post(`${settings.apiUrl}/users`, { username, password });
+const login = (username, password) => axios.post(`${settings.apiUrl}${endpoint}`, { username, password });
 
 
 const authApi =  {

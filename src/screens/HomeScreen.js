@@ -1,26 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+
 import productsApi from '../api/products';
 import Product from '../components/Product';
+import Loading from '../components/Loading';
 
-function HomeScreen() {
+function HomeScreen(props) {
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
-
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         (async () => {
+            setLoading(true);
             try {
                 const { data } = await productsApi.getProducts();
                 setProducts(data.products);
-                setCategories(data.categories)
+                setCategories(data.categories);
             } catch (err) {
                 console.error(err);
             }
+            setLoading(false);
         })();
-    }, []);
+    }, [props.match.params]);
+    if (loading) return <Loading full={true} />
     return (
-        <>
+        <div className='container'>
             <nav className="navbar navbar-expand-xl navbar-expand-lg navbar-expand-md navbar-light bg-light">
                 <div className="container-fluid">
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -47,7 +52,7 @@ function HomeScreen() {
                     ))}
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 

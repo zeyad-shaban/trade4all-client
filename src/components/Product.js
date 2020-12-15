@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Product({ product }) {
     return (
         <div className="col">
-            <a className="card" href="/products/<%= product._id %>" style={{ textDecoration: 'none', color: 'black', }}>
+            <Link to={`/products/${product._id}`} className="card" style={{ textDecoration: 'none', color: 'black', }}>
                 <div className="card">
                     <img src={product.previewUrl} className="card-img-top" alt="preview" width={354} height={268} loading="lazy" />
                     <div className="card-body">
@@ -13,7 +14,7 @@ export default function Product({ product }) {
                     </div>
                     <span style={{ fontSize: '120%', alignSelf: 'flex-end', padding: 10, color: '#66dd62' }}>{product.price}</span>
                 </div>
-            </a>
+            </Link>
         </div>
     );
 }

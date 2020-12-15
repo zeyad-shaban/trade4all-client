@@ -9,6 +9,7 @@ import { removeProduct } from '../reducers/cart';
 function CartScreen({ user, cart, loading, removeProduct, loading: loadingUser }) {
     const [paid, setPaid] = useState(false);
     const [error, setError] = useState(null);
+    console.log(paid, error, setError)
     const paypalRef = useRef();
     useEffect(() => {
         window.paypal
